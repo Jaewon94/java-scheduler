@@ -1,5 +1,8 @@
 package com.jaewon.javascheduler.event;
 
+import com.jaewon.javascheduler.event.update.AbstractAuditableEvent;
+import com.jaewon.javascheduler.event.update.UpdateMeeting;
+
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -29,4 +32,16 @@ public class Meeting extends AbstractEvent {
         return type == EventType.MEETING;
     }
 
+    public void update() {
+
+    }
+
+    @Override
+    protected void update(AbstractAuditableEvent update) {
+        UpdateMeeting meetingUpdate = (UpdateMeeting) update;
+
+        this.participants = meetingUpdate.getParticipants();
+        this.meetingRoom = meetingUpdate.getMeetingRoom();
+        this.agenda = meetingUpdate.getAgenda();
+    }
 }

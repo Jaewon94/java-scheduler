@@ -24,4 +24,9 @@ public class Meeting extends AbstractEvent {
 
     }
 
+    @Override
+    public boolean support(EventType type) {
+        return type == EventType.MEETING;
+    }
+
 }
